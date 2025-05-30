@@ -1,5 +1,4 @@
 import os
-import sys
 from source.audio_initializer.loader import load_audio_file
 from source.audio_initializer.analyzer import extract_bitrate
 from source.audio_initializer.chunker import split_audio_into_chunks
@@ -23,7 +22,7 @@ def process_audio_file(input_path, output_filename=None, model_name="base"):
 
     audio = load_audio_file(input_path)
     bitrate = extract_bitrate(input_path)
-    chunk_paths = split_audio_into_chunks(audio, input_path, bitrate or 128000)
+    chunk_paths = split_audio_into_chunks(audio, bitrate or 128000, input_path)
     
     full_transcript = transcribe_all_chunks(chunk_paths,model_name="base")
     
