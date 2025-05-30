@@ -5,7 +5,8 @@ import whisper
 def transcribe_audio_file(file_path, model_name="base"):
     """Transcribe a single audio file."""
     model = whisper.load_model(model_name)
-    return model.transcribe(file_path)
+    transcription = model.transcribe(file_path)
+    return transcription
 
 
 def transcribe_chunk(chunk_path, chunk_number, model_name="base"):

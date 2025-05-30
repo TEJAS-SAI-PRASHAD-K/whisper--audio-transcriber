@@ -24,7 +24,7 @@ def transcribe_all_chunks(chunk_files,model_name="base"):
     for i, chunk_file in enumerate(chunk_files, 1):
         chunk_path = os.path.join(CHUNKS_DIR, chunk_file)
         chunk_transcript = transcribe_chunk(chunk_path, i, model_name)
-        full_transcript += f"\n\n[Chunk {i}]\n{chunk_transcript}"
+        full_transcript += f"\n\n[Chunk {i}] : {chunk_transcript}"
     
     print(full_transcript)
     return full_transcript.strip()
