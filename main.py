@@ -2,7 +2,7 @@ import os
 from source.audio_initializer.loader import load_audio_file
 from source.audio_initializer.analyzer import extract_bitrate
 from source.audio_initializer.chunker import split_audio_into_chunks
-from source.transcription.transcript_manager import transcribe_all_chunks, save_transcript
+from source.transcription.transcript_manager import print_transcription, transcribe_all_chunks, save_transcript
 
 
 OUTPUT_ENCODING = "utf-8"
@@ -20,11 +20,12 @@ def process_audio_file(input_path, output_filename=None, model_name="base"):
         raise ValueError(f"Unsupported audio format: {ext}")
     
 
-    audio = load_audio_file(input_path)
-    bitrate = extract_bitrate(input_path)
-    chunk_paths = split_audio_into_chunks(audio, bitrate or 128000, input_path)
+    # audio = load_audio_file(input_path)
+    # bitrate = extract_bitrate(input_path)
+    # chunk_paths = split_audio_into_chunks(audio, bitrate or 128000, input_path)
     
-    full_transcript = transcribe_all_chunks(chunk_paths,model_name="base")
+    full_transcript = transcribe_all_chunks(input_path,model_name="base")
+    print_transcription(full_transcript)
     
     if not output_filename:
         filename_without_ext = os.path.splitext(os.path.basename(input_path))[0]
@@ -35,7 +36,7 @@ def process_audio_file(input_path, output_filename=None, model_name="base"):
 
 def main():
 
-    input_file = "/Users/tejassaiprashad/Documents/my_workspace/whisper--audio-transcriber/data/input/sample_input.wav"
+    input_file = "/Users/tejassaiprashad/Documents/my_workspace/whisper--audio-transcriber/data/chunks/sample_700mb/chunk_001.wav"
     
     if os.path.exists(input_file):
         process_audio_file(input_file)

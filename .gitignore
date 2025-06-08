@@ -1,5 +1,7 @@
 /myvenv
 source/audio_initializer/__pycache__
 source/transcription/__pycache__
-sample_data
+data
 /.vscode
+/.DS_Store
+/.env
